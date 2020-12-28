@@ -6,7 +6,7 @@ function App() {
 
   const [myCourses, setMyCourse] = useState([]);
   const [inputData, setInputData] = useState({});
-  const [GPA, setGPA] = useState(4.0);
+  const [GPA, setGPA] = useState(0.0);
 
 
   /**
@@ -18,28 +18,28 @@ function App() {
     var allCredit = 0;
     var allGradeVaule = 0;
     myCourses.forEach((item) => {
-      if(item.grade == 'A'){
+      if(item.grade === 'A'){
         allCredit += Number(item.credit)
         allGradeVaule += 4*Number(item.credit)
-      }else if(item.grade == 'B+'){
+      }else if(item.grade === 'B+'){
         allCredit += Number(item.credit)
         allGradeVaule += 3.5*Number(item.credit)
-      }else if(item.grade == 'B'){
+      }else if(item.grade === 'B'){
         allCredit += Number(item.credit)
         allGradeVaule += 3*Number(item.credit)
-      }else if(item.grade == 'C+'){
+      }else if(item.grade === 'C+'){
         allCredit += Number(item.credit)
         allGradeVaule += 2.5*Number(item.credit)
-      }else if(item.grade == 'C'){
+      }else if(item.grade === 'C'){
         allCredit += Number(item.credit)
         allGradeVaule += 2*Number(item.credit)
-      }else if(item.grade == 'D+'){
+      }else if(item.grade === 'D+'){
         allCredit += Number(item.credit)
         allGradeVaule += 1.5*Number(item.credit)
-      }else if(item.grade == 'D'){
+      }else if(item.grade === 'D'){
         allCredit += Number(item.credit)
         allGradeVaule += 1*Number(item.credit)
-      }else if(item.grade == 'F'){
+      }else if(item.grade === 'F'){
         allCredit += Number(item.credit)
         allGradeVaule += 0*Number(item.credit)
       }
@@ -90,23 +90,25 @@ function App() {
       <div className="h-2/3 md:w-2/4 p-3 rounded-lg mx-auto overflow-auto">
         <h1 className="text-2xl my-3">My courses</h1>
         {/* TODO display courses */}
+        <div className = " bg-gray-500 bg-opacity-50 text-2xl">
         {myCourses.map((item) => {
            return <CourseCard courseid = {item.courseID} credit = {item.credit} grade = {item.grade} delete = {onDeleteCourse}/>
         })}
+        </div>
       </div>
       {/* TODO add course input form */}
-      <div className= "text-center">
+      <div className= "text-center bg-red-300">
         <form onSubmit = {(e) => addCourse(e)}>
           <div>
-            <label className = "pr-40">CourseId</label>
-            <label className = "pr-20">credit</label>
-            <label className = "pr-20">grade</label>
+            <label className = "pr-28 ">CourseId</label>
+            <label className = "pr-20 ">credit</label>
+            <label className = "pr-20 ">grade</label>
           <br></br>
           <input type="number" className = "mr-20" onChange = {(e) => 
             setInputData({...inputData, courseID:e.currentTarget.value})}></input>
 
 
-          <select className = "mr-20" onChange = {(e) => 
+          <select className = "mr-20 px-3" onChange = {(e) => 
             setInputData({...inputData,credit: e.currentTarget.value})} >
             {credit.map((item) => {
               return <option value = {item}> {item}</option>
@@ -114,7 +116,7 @@ function App() {
           </select>
 
 
-          <select className = "mr-20" onChange = {(e) =>
+          <select className = "mr-20 px-3" onChange = {(e) =>
             setInputData({...inputData,grade : e.currentTarget.value})}>
             {grade.map((item) => {
               return <option value = {item}>{item}</option>
@@ -122,13 +124,13 @@ function App() {
           </select>
 
 
-          <button type = "submit" className="bg-green-500 rounded-full py-1 px-4">Add</button>
+          <button type = "submit" className="hover:bg-green-700 bg-green-500 rounded-full py-1 px-4">Add</button>
           </div>
         </form>
       </div>
       {/* TODO display calculated GPA */}
 
-      <h1>{GPA}</h1>
+      <h1 className = "bg-indigo-600 bg-opacity-75 text-center mt-10 text-4xl">{GPA}</h1>
     </div>
   );
 }
