@@ -58,7 +58,7 @@ function App() {
     // TODO
     //create input with text and submit and add it to coursecard 
     setMyCourse([...myCourses,inputData])
-    console.log(myCourses)
+    //console.log(myCourses)
     
     // recalculate GPA
     calculateGPA();
@@ -72,9 +72,6 @@ function App() {
    */
   function onDeleteCourse(id) {
     // TODO
-    // myCourses.filter((item) => {
-    //   return item.courseID != id
-    // })
     const course = myCourses.filter(item => {
       return item.courseID !== id
     })
